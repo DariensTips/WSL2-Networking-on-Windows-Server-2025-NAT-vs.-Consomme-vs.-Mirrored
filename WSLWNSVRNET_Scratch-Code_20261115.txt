@@ -1,0 +1,70 @@
+#################################################
+#
+# WSLWNSVRNET code scratchpad for WSL2 networking demo on Windows Server 2025.
+#
+#################################################
+
+
+########  Start a simple web server in WSL2 and demonstrate TCP port forwarding from Windows to WSL2.
+myWebDir=~/wsl-web-demo
+mkdir -p $myWebDir
+
+cat > $myWebDir/index.html <<'EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WSL2 Networking Demo</title>
+</head>
+<body>
+    <h1>Hello, Viewers!</h1>
+    <p>This page is served by Fedora 45 running in WSL2 on Windows Server 2025.</p>
+    <p>The WSL2 networking mode is NAT.</p>
+    <p><strong>Network Address Translation (NAT)</strong> is a networking mechanism that maps IP addresses between different address spaces by modifying the source or destination IP address in packet headers. It enables systems on a private network to communicate with external networks using translated addresses. </p>
+</body>
+</html>
+EOF
+
+
+######## get the WSL2 networking mode and IP addresses, then start a simple HTTP server on port 8000.
+wslinfo --networking-mode
+ip a
+python3 -m http.server 8000 --bind 0.0.0.0 --directory $myWebDir
+
+
+########  Test connectivity to the WSL2 web server from Windows using PowerShell.
+$LocalIPs="172.25.127.49","127.0.0.1","10.22.25.102"
+$LocalIPs | ForEach-Object {Test-NetConnection -ComputerName $_ -Port 8000}
+
+
+########  Set up TCP port forwarding from Windows to WSL2 using PowerShell and netsh.
+netsh interface portproxy show all
+
+$WslIPv4 = '172.25.127.49'
+netsh interface portproxy add v4tov4 `
+    listenaddress=10.22.25.102 `
+    listenport=9409 `
+    connectaddress=$WslIPv4 `
+    connectport=8000 `
+    protocol=tcp
+
+
+########  Add a firewall rule to allow inbound traffic on TCP port 9409.
+New-NetFirewallRule `
+    -Name 'WSL-Web-TCP9409' `
+    -DisplayName 'WSL Web - TCP 9409 to 8000' `
+    -Direction Inbound `
+    -Action Allow `
+    -Protocol TCP `
+    -LocalAddress 10.22.25.102 `
+    -LocalPort 9409 `
+    -Profile Any
+
+
+########  remove the TCP port forwarding and firewall rule when done.
+netsh interface portproxy delete v4tov4 `
+    listenaddress=10.22.25.102 `
+    listenport=9409 `
+    protocol=tcp
+
+Remove-NetFirewallRule -Name 'WSL-Web-TCP9409'
