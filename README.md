@@ -1,5 +1,14 @@
 # WSL2 Networking on Windows Server 2025: NAT vs. Consomme vs. Mirrored
 
+## Watch the video
+
+**Video link: https://www.youtube.com/watch?v=OiqRTiFeGB4**
+
+Video title: **WSL2 Networking on Windows Server 2025: NAT vs. Consomme vs. Mirrored**
+
+Channel: https://www.youtube.com/@darienstips9409  
+Repository supplied by the author: https://github.com/DariensTips/WSL2-Networking-on-Windows-Server-2025-NAT-vs.-Consomme-vs.-Mirrored
+
 <img width="1920" height="1080" alt="wsl2-networking-on-windows-server-2025-nat-vs-consomme-vs-mirrored-withpic" src="https://github.com/user-attachments/assets/d9a94de3-cd8e-4651-9088-67b36c2c8217" />
 
 
@@ -10,14 +19,6 @@
 **Tested environment stated in the video:** WSL 3.0.5; Fedora 45; Windows Server 2025 Desktop Experience; Windows 11 26H2. The video also covers Windows Server 2025 Core and reports a Windows Server 2022 fallback observation. Exact Windows builds and Python patch versions are not specified in the final script.  
 **Usage notes:** Use individual examples on the identified systems, in the video order. This is not an installer, service deployment, or all-in-one script. Read the prerequisites and replace the documentation values before running commands.
 
-## Watch the video
-
-**Video link: pending publication — replace `VIDEO_URL` with the published YouTube URL.**
-
-Video title: **WSL2 Networking on Windows Server 2025: NAT vs. Consomme vs. Mirrored**
-
-Channel: https://www.youtube.com/@darienstips9409  
-Repository supplied by the author: https://github.com/DariensTips/WSL2-Networking-on-Windows-Server-2025-NAT-vs.-Consomme-vs.-Mirrored
 
 ## Overview
 
