@@ -1,5 +1,8 @@
 # WSL2 Networking on Windows Server 2025: NAT vs. Consomme vs. Mirrored
 
+<img width="1920" height="1080" alt="wsl2-networking-on-windows-server-2025-nat-vs-consomme-vs-mirrored-withpic" src="https://github.com/user-attachments/assets/d9a94de3-cd8e-4651-9088-67b36c2c8217" />
+
+
 **Author / channel:** Darien Hawkins / Darien's Tips  
 **Purpose:** Companion reference examples for comparing WSL2 NAT, Mirrored, and Consomme networking and testing inbound HTTP connectivity.  
 **Source script:** `WSLWNSVRNET_Title-Chapters-Script_20261114-225958.txt`  
