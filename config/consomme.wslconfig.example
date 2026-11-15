@@ -1,0 +1,14 @@
+# Title: WSL2 Networking on Windows Server 2025: NAT vs. Consomme vs. Mirrored
+# Author / Channel: Darien Hawkins / Darien's Tips
+# Purpose: Manual .wslconfig example for the Consomme setting described in Section F.
+# Source script filename: WSLWNSVRNET_Title-Chapters-Script_20261114-225958.txt
+# Preparation date: 2026-11-15
+# Tested environment: Author's video: WSL 3.0.5; Fedora 45; Windows Server 2025 and Windows 11 26H2. Server Core and Server 2022 observations are identified separately.
+# Target system: Windows Server 2025 Core, current Windows user
+# Shell: INI configuration, not a shell
+# Required privileges: Write access to own Windows user profile
+# Prerequisites: WSL version accepting consomme; preserve other existing settings
+# Usage notes: Individual reference example, not an end-to-end automation script. Follow README order; replace documentation addresses before use. Commands were extracted from the final script, not executed on Windows here. Do not run every file on one machine.
+
+[wsl2]
+networkingMode=consomme
